@@ -3,21 +3,20 @@ import 'package:flavor/flavor_colors.dart';
 import 'package:flavor/flavor_strings.dart';
 import 'package:flavor/flavor_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_svg/svg.dart';
-
-void main() {
-  runApp(const MyApp());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: FlavorStrings.applicationName,
-      theme: FlavorTheme.theme,
-      home: const MyHomePage(title: FlavorStrings.applicationTitle),
+    return FlavorBanner(
+      child: MaterialApp(
+        title: FlavorStrings.applicationName,
+        theme: FlavorTheme.theme,
+        home: const MyHomePage(title: FlavorStrings.applicationTitle),
+      ),
     );
   }
 }
@@ -56,6 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 100,
               color: FlavorColors.primaryColor,
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(FlavorConfig.instance?.variables?["baseUrl"] ?? ''),
             const SizedBox(height: 50),
             const Text(
               'You have pushed the button this many times:',
